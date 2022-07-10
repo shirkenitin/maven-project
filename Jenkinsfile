@@ -18,7 +18,12 @@ stages
    { sh 'mvn clean package'}
    }}
  
- 
+ stage ('deployment' )
+ {steps{
+ sshagent (credentials: ['deploy-dev']) {
+    sh 'ssh -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.39.218:/var/lib/tomcat/webapps/'
+  }
+ }}
 
  
 
