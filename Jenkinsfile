@@ -21,7 +21,7 @@ stages
  stage ('deployment' )
  {steps{
  sshagent (credentials: ['Tomcat-SSH']) {
-  sh 'scp ssh ec2-user@3.69.168.211 rm -rf /var/lib/tomcat/webapps/webapp.war'
+  sh 'ssh ec2-user@3.69.168.211 rm /var/lib/tomcat/webapps/webapp.war'
   echo 'Old file deleted'
     sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@3.69.168.211:/var/lib/tomcat/webapps/'
   echo 'new file deployed'
