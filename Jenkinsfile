@@ -1,12 +1,15 @@
 pipeline
 {
 agent any
+   environment{
+        VERSION = "${env.Version}"
+    }
 stages
 
 { stage ('scm checkout')
  { steps {git branch: 'master', url: 'https://github.com/shirkenitin/maven-project'
          
-          print "DEBUG: parameter foo = ${env.Version}"}         //use pipeline syntax generator to generate script
+              //use pipeline syntax generator to generate script
  }
 
 
