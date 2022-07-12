@@ -4,7 +4,9 @@ agent any
 stages
 
 { stage ('scm checkout')
- { steps {git branch: 'master', url: 'https://github.com/shirkenitin/maven-project'}         //use pipeline syntax generator to generate script
+ { steps {git branch: 'master', url: 'https://github.com/shirkenitin/maven-project'
+         
+          print "DEBUG: parameter foo = ${env.Version}"}         //use pipeline syntax generator to generate script
  }
 
 
@@ -18,7 +20,7 @@ stages
    { sh 'mvn clean package'}
    }}
  
- stage ('deployment' )
+/*stage ('deployment' )
  {steps{
  sshagent (credentials: ['Tomcat-SSH']) {
   sh 'ssh ec2-user@3.69.168.211 rm /var/lib/tomcat/webapps/webapp.war'
@@ -27,6 +29,7 @@ stages
   echo 'new file deployed'
   }
  }}
+ */
 
  
 
