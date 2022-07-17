@@ -17,7 +17,7 @@ pipeline{
             steps{
                  script{
                 withSonarQubeEnv(credentialsId: 'Sonar') {
-                     withMaven(maven:'Maven 3.5') {
+                     withMaven(maven:'Maven 3.5.2') {
                         sh 'mvn clean package sonar:sonar'
                      }
 }
