@@ -65,7 +65,7 @@ pipeline{
         {
         steps{
           
-             sh 'docker run -itd -p 24000:8085 shirkenitin100/tomcat:V1'
+             sh 'docker run -itd -p 24000:8080 shirkenitin100/tomcat:V1'
             
               
            }   
