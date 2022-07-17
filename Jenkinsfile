@@ -49,6 +49,16 @@ pipeline{
                 sh 'docker build -t tomcat/release:V${VERSION} .'
             }
         }
+        stage('Push Image')
+        {
+        steps{
+            withDockerRegistry(credentialsId: 'Jfrog', url: 'http://18.185.118.173:8082/artifactory/Jfrog/') 
+            {
+              sh "docker push tomcat/nitin:v1"
+            }
+        }
+        }
+
 
         
  }
