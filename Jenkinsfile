@@ -1,31 +1,16 @@
-pipeline
-{
-agent any
-   environment{
-        VERSION = "${env.Version}"
+pipeline{
+    agent any
+    environment {
+        VERSION="${env.VERSION}"
     }
-stages
 
-{ stage ('scm checkout')
- { steps {git branch: 'master', url: 'https://github.com/shirkenitin/maven-project'
-         
-              //use pipeline syntax generator to generate script
+    stages{
+
+        stage('SCM Checkout'){
+            steps{
+                git 'https://github.com/shirkenitin/maven-project'
+                echo 'SCM checkout success'
+            }
+        }
+    }
  }
-
-
-  stage ('code compile' )
-  {steps {  withMaven(globalMavenSettingsConfig: 'c9d791bb-bfbb-414f-8ef9-afbc689969b3', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') 
-   { sh 'mvn compile'}
-   }}
- 
-  stage ('code package' )
-  {steps {  withMaven(globalMavenSettingsConfig: 'c9d791bb-bfbb-414f-8ef9-afbc689969b3', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') 
-   { sh 'mvn clean package'}
-   }}
- 
-
-
- 
-
-}
-}
