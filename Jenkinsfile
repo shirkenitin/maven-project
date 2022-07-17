@@ -46,7 +46,7 @@ pipeline{
          stage('Build Image')
         {
             steps{
-                sh 'docker build -t tomcat/release:V1 .'
+                sh 'docker build -t shirkenitin100/tomcat:V1 .'
             }
         }
         stage('Push Image in DockerHub')
@@ -56,7 +56,7 @@ pipeline{
     // some block
 
             
-              sh "docker push tomcat/release:V1"
+              sh "docker push shirkenitin100/tomcat:V1"
            }   
         }
         }
