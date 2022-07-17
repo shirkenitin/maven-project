@@ -9,6 +9,9 @@ pipeline{
         stage('SCM Checkout'){
             steps{
                 git 'https://github.com/shirkenitin/maven-project'
+                script {
+   sh ' SCM checkout Success'
+}
                 
             }
         }
