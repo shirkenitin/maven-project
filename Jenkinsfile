@@ -15,7 +15,7 @@ pipeline{
 
         stage('code quality check')
         {
-            steps{ withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME')
+            steps
             {
                 withSonarQubeEnv(credentialsId: 'Sonar') 
                 {
@@ -24,7 +24,7 @@ pipeline{
     // some block
                     
                 }
-            }}
+            }
         }
 
 
