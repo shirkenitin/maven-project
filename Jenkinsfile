@@ -49,13 +49,15 @@ pipeline{
                 sh 'docker build -t tomcat/release:V${VERSION} .'
             }
         }
-        stage('Push Image')
+        stage('Push Image in DockerHub')
         {
         steps{
-            withDockerRegistry(credentialsId: 'Jfrog', url: 'http://18.185.118.173:8082/artifactory/Jfrog/') 
-            {
+           withDockerRegistry(credentialsId: 'DockerHub', url: 'https://hub.docker.com/') {
+    // some block
+
+            
               sh "docker push tomcat/release:V${VERSION}"
-            }
+           }   
         }
         }
 
