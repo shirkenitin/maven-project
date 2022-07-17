@@ -46,17 +46,17 @@ pipeline{
          stage('Build Image')
         {
             steps{
-                sh 'docker build -t tomcat/release:V${VERSION} .'
+                sh 'docker build -t tomcat/release:V1 .'
             }
         }
         stage('Push Image in DockerHub')
         {
         steps{
-           withDockerRegistry(credentialsId: 'DockerHub', url: 'https://hub.docker.com/') {
+           withDockerRegistry(credentialsId: 'DockerHub', url: 'https://index.docker.io/v1/') {
     // some block
 
             
-              sh "docker push tomcat/release:V${VERSION}"
+              sh "docker push tomcat/release:V1"
            }   
         }
         }
