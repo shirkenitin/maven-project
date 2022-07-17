@@ -13,16 +13,21 @@ pipeline{
             }
         }
 
-        stage('code quality check'){
-            steps{
-                 script{
-                withSonarQubeEnv(credentialsId: 'Sonar') {
+        stage('code quality check')
+        {
+            steps{ withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME')
+            {
+                withSonarQubeEnv(credentialsId: 'Sonar') 
+                {
                     
                         sh 'mvn clean package sonar:sonar'
-                     
-}
-            }
+    // some block
+                    
+                }
+            }}
         }
+
+
+
     }
- }
 }
