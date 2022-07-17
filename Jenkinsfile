@@ -46,7 +46,7 @@ pipeline{
          stage('Build Image')
         {
             steps{
-                { sh 'docker build -t tomcat/nitin:v1 .'}
+                 sh 'docker build -t tomcat/nitin:v1 .'
             }
         }
 
