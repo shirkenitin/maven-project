@@ -13,18 +13,16 @@ pipeline{
             }
         }
 
-        stage('code quality check')
-        {
-            steps
-            {
-                withSonarQubeEnv(credentialsId: 'Sonar') 
-                {
+        stage('code quality check'){
+            steps{
+                 script{
+                withSonarQubeEnv(credentialsId: 'Sonar') {
                     
                         sh 'mvn clean package sonar:sonar'
-    // some block
-                    
-                }
+                     
+}
             }
         }
     }
+ }
 }
