@@ -15,10 +15,11 @@ pipeline{
 
         stage('code quality check'){
             steps{
+                 script{
                 withSonarQubeEnv(credentialsId: 'Sonar') {
                      withMaven(maven:'Maven 3.5') {
                         sh 'mvn clean package sonar:sonar'
-   
+                     }
 }
             }
         }
