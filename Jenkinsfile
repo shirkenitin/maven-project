@@ -20,7 +20,7 @@ pipeline{
                     
                         sh 'mvn clean package sonar:sonar'
                      
-}
+                    }
             }
         }
     }
@@ -32,6 +32,15 @@ pipeline{
                     sh 'mvn compile' 
                 }
             }
+        }
+
+       stage ('Package' )
+        {
+            steps {
+                  withMaven(globalMavenSettingsConfig: 'c9d791bb-bfbb-414f-8ef9-afbc689969b3', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
+                   sh 'mvn clean package'
+                }
+        }
         }
         
  }
