@@ -16,7 +16,7 @@ pipeline{
         stage('code quality check'){
             steps{
                  script{
-                withSonarQubeEnv(credentialsId: 'Sonar') {
+                withSonarQubeEnv(credentialsId: 'SonarCredentials') {
                     
                         sh 'mvn clean package sonar:sonar'
                      
@@ -28,7 +28,7 @@ pipeline{
          stage('Compile')
         {
             steps{
-                withMaven(globalMavenSettingsConfig: 'c9d791bb-bfbb-414f-8ef9-afbc689969b3', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
+                withMaven(globalMavenSettingsConfig: '6290f137-1930-4d4d-9151-3acc8c921b3b', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
                     sh 'mvn compile' 
                 }
             }
@@ -37,7 +37,7 @@ pipeline{
        stage ('Package' )
         {
             steps {
-                  withMaven(globalMavenSettingsConfig: 'c9d791bb-bfbb-414f-8ef9-afbc689969b3', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
+                  withMaven(globalMavenSettingsConfig: '6290f137-1930-4d4d-9151-3acc8c921b3b', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
                    sh 'mvn clean package'
                 }
         }
