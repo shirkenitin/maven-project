@@ -2,6 +2,9 @@ pipeline{
     agent any
     environment {
         VERSION="${env.VERSION}"
+         registryCredential = 'ecr:eu-central-1:awscreds'
+        appRegistry = "081313360202.dkr.ecr.eu-central-1.amazonaws.com/nitin"
+        vprofileRegistry = "https://081313360202.dkr.ecr.eu-central-1.amazonaws.com"
     }
 
     stages{
@@ -49,6 +52,21 @@ pipeline{
                 sh 'docker build -t shirkenitin100/tomcat:V1 .'
             }
         }
+        
+        
+         stage('Upload Image at ECR') {
+          steps{
+            script {
+              docker.withRegistry( vprofileRegistry, registryCredential ) {
+                dockerImage.push("$BUILD_NUMBER")
+                dockerImage.push('latest')
+              }
+            }
+          }
+     }
+        
+        
+        
         stage('Push Image in DockerHub')
         {
         steps{
